@@ -99,6 +99,7 @@ export default function App() {
       horaInicio: normalizeHeader('HORARIO DE INICIO'),
       horaFinal: normalizeHeader('HORA FINAL'),
       ambiente: normalizeHeader('AMBIENTE DE FORMACIÓN'),
+      horario:normalizeHeader('LUNES, MIERCOLES, VIERNES ')
     }
   }, [])
 
@@ -277,8 +278,9 @@ export default function App() {
             const hIni = safeText(r[keys.horaInicio])
             const hFin = safeText(r[keys.horaFinal])
             const ambiente = safeText(r[keys.ambiente])
+            const horario = safeText(r[keys.horario])
 
-            const obsText = `Horario: ${hIni} a ${hFin}. Ambiente: ${ambiente}.`
+            const obsText = `Horario: ${horario} ${hIni} a ${hFin}. Ambiente: ${ambiente}.`
 
             const isFlipped = flippedKey === idx
 
