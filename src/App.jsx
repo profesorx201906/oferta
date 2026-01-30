@@ -6,6 +6,18 @@ import { Container, Row, Col, Alert, Spinner, Badge } from 'react-bootstrap'
 // Verde institucional
 const SENA_GREEN = '#39A900'
 
+function ambienteEnOracion(value) {
+  const s = String(value ?? '').trim()
+  if (!s || s === '—') return '—'
+
+  // Pasa a minúscula y pone Mayúscula inicial de cada palabra (mantiene números)
+  return s
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .replace(/\b([a-záéíóúñ])/g, (m) => m.toUpperCase())
+}
+
+
 function normalizeHeader(s) {
   return String(s ?? '')
     .trim()
@@ -277,8 +289,8 @@ export default function App() {
 
             const hIni = safeText(r[keys.horaInicio])
             const hFin = safeText(r[keys.horaFinal])
-            const ambiente = safeText(r[keys.ambiente])
-            const horario = safeText(r[keys.horario])
+            const ambiente = safeText(ambienteEnOracion(r[keys.ambiente]))
+            const horario = safeText(ambienteEnOracion(r[keys.horario]))
 
             const obsText = `Horario: ${horario} ${hIni} a ${hFin}. Ambiente: ${ambiente}.`
 
